@@ -1,0 +1,10 @@
+MVI B B 
+MVI B C 
+
+ADD B 
+ADD C
+
+MOV B C 
+MOV A B
+MVI A A
+MVI C F

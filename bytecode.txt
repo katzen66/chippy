@@ -1,0 +1,8 @@
+Need to make format instruction + operand 16bit wide for loading constants
+AB CDEFGH
+CDEFGH reserved to get 2^6=64 codes, permittiong 2 3bit operands or 1 6bit operand
+
+01 bbb000 ADD B; ADD B to A
+10 bbbccc MOV B, C; COPY C over B;
+for now only ADD + MOV
+;;10 bbb000
