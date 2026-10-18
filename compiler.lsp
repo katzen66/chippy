@@ -29,7 +29,7 @@
                     do
                       (setf OPCODE (concatenate 'string OPCODE (regid (nth i asm))))
                       (setf i (+ i 1))
-                    finally (format t OPCODE)
+                    finally (format t (format nil "~8,,,'0a" OPCODE))
               )
               (format t (concatenate 'string "Invalid op: " line)))
         (terpri))))
