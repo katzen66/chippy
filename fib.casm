@@ -7,4 +7,4 @@ ADD C
 MOV B C 
 MOV A B
 MVI A A
-MVI C F
+MVI C PC

@@ -1,13 +1,13 @@
 ;; Initialize instruction & register mapping
-(let ((reg (list "H" "M" "PC"))
-      (mxp (list 6 7 5)))
+(let ((reg (list "A" "B" "C" "D" "E" "H" "M" "PC"))
+      (mxp (list 0 1 2 3 4 6 7 5)))
   (defvar *reg_mxp* (pairlis reg mxp)))
 
 (defstruct (instr (:constructor INSTR (op id operand_nr)))
   (op "" :type string)
   (id -1 :type integer)
   (operand_nr 0 :type integer))
-(defvar *instructions* (list (INSTR "ADD" 1 1) (INSTR "MOV" 2 2) (INSTR "MVI" 3 1)))
+(defvar *instructions* (list (INSTR "ADD" 1 1) (INSTR "MOV" 2 2) (INSTR "MVI" 3 2)))
 (defun matchOP (op) (find op *instructions* :key #'instr-op :test #'string=))
 (defun regid (reg) (format nil "~3,'0b" (cdr (assoc reg *reg_mxp* :test #'string=))))
 (defun split-string (str sep)
