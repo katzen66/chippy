@@ -1,0 +1,68 @@
+DEFINING THE CHIP:
+We need loading 8bit constants into memory.
+We need moving 8bit values between registers & mem.
+We want a flexible opcode, so that we minimize NOOPS.
+We want to support a maximum of 3 bytes per instruction:
+- OPCODE
+- CONSTANT1
+- CONSTANT2
+Format of a byte: ABCDEFGH, highest to lowest bit.
+A: tells us how many bytes is the instruction.
+  - 0: we can execute right away
+    BCDEFGH: the instruction itself.
+  - 1: we need to fetch >= 1 operands
+  B: tells us if we need to fetch a 2nd operand
+    - 0: we can execute after 1 fetch of PC+1 into a buffer.
+      CDEFGH: instruction
+    - 1: we need to fetch another byte
+
+
+INSTRUCT_CLK:
+  - 1: Fetch instruction data
+    FETCH_CLK = 2*INSTRUCT_CLK:
+      - 1: Fetch opcode
+      - 0: Fetch CONSTANT in INSTRUCT_BUF
+  - 0: Execute instruction
+    - 0: Do operation
+    - 1: Calculate next PC value and set M register
+
+
+A: Acumulator
+B, C, D, E, H, L: general registers #TODO register L
+BC, DE, HL register pairs #TODO
+PC: program counter
+SP: stack pointer #TODO
+
+OPCODES:
+A^B:
+  1: 2operands, 1byte instruction
+    AB=01: MOV into CDE  from FGH
+    AB=10: use adder to do operation CDE with register FGH
+  0: 
+    A=B=0: 1operand, 1byte instruction
+      C:
+        1: instruction operates on register pair #TODO
+          DE: register pair operated
+          FGH: instruction for register pair
+            001: INX: increment DE
+            010: DAD: add DE to DE register pair 
+            011: DCX: decrement DE
+            100: POP: DE is set to memory refferenced by SP, SP=SP+2
+            101: PUSH: SP=SP-2, write DE to SP refferenced memory
+
+        0: instruction
+          - operates on register
+            DEF: register operated
+            GH: instruction for register
+              01: INR: increment DEF
+              11: DCR: decrement DEF
+          - conditional return:
+            DEF: CC acumulator condition
+            GH: 10: RCC
+    A=B=1: multiple byte instruction
+      CDE: register or condition to use
+      FGH:
+        001: MVI, set CDE to PC+1
+        010: JMP, jump to register CDE
+        011: JCC, jump if condition CDE
+        100: use adder to do operation CDE with memory refferenced by PC+1
