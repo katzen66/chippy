@@ -29,6 +29,7 @@ INSTRUCT_CLK:
 
 A: Acumulator
 B, C, D, E, H, L: general registers #TODO register L
+M: Memmory mapped by H
 BC, DE, HL register pairs #TODO
 PC: program counter
 SP: stack pointer #TODO
@@ -66,3 +67,13 @@ A^B:
         010: JMP, jump to register CDE
         011: JCC, jump if condition CDE
         100: use adder to do operation CDE with memory refferenced by PC+1
+
+8bit REGISTER codes:
+A: 000
+B: 001
+C: 010
+D: 011
+E: 100
+H: 101
+L: 110
+M: 111
