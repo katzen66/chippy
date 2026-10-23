@@ -36,7 +36,7 @@ SP: stack pointer #TODO
 OPCODES:
 A^B:
   1: 2operands, 1byte instruction
-    AB=01: MOV into CDE  from FGH
+    AB=01: MOV into FGH from CDE
     AB=10: use adder to do operation CDE with register FGH
   0: 
     A=B=0: 1operand, 1byte instruction
