@@ -77,3 +77,9 @@ E: 100
 H: 101
 L: 110
 M: 111
+
+Tick phases:
+0: Load instruction
+1: Load instruction+1 into buffer
+2: Load instruction+2 into buffer
+3: Load HL address into M and execute
