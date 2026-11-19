@@ -649,10 +649,10 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>LD</string>
+          <string>EXC</string>
         </entry>
       </elementAttributes>
-      <pos x="-220" y="900"/>
+      <pos x="-200" y="560"/>
     </visualElement>
     <visualElement>
       <elementName>And</elementName>
@@ -765,10 +765,10 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>EX</string>
+          <string>CI_F</string>
         </entry>
       </elementAttributes>
-      <pos x="-200" y="560"/>
+      <pos x="-160" y="400"/>
     </visualElement>
     <visualElement>
       <elementName>And</elementName>
@@ -785,10 +785,10 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CI_F</string>
+          <string>LD</string>
         </entry>
       </elementAttributes>
-      <pos x="-160" y="400"/>
+      <pos x="-220" y="900"/>
     </visualElement>
     <visualElement>
       <elementName>Or</elementName>
